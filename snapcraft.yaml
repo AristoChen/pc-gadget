@@ -1,7 +1,7 @@
 name: pc
-version: '16.04-0.9'
+version: '24.04-0.1'
 type: gadget
-base: core20
+base: core24
 summary: PC gadget for generic devices
 description: |
     This gadget enables generic pc devices to work with Ubuntu Core
@@ -14,7 +14,7 @@ parts:
     plugin: nil
     stage-packages:
       - shim-signed
-      - grub-efi-${SNAPCRAFT_TARGET_ARCH}-signed
+      - grub-efi-${CRAFT_TARGET_ARCH}-signed
       - to amd64:
         - grub-pc-bin
     prime: [ -* ]
@@ -26,6 +26,6 @@ parts:
     after: [grub-prepare]
     override-build: |
       make install
-      cp -r install/* ${SNAPCRAFT_PART_INSTALL}
+      cp -r install/* ${CRAFT_PART_INSTALL}
       # snapcraft reads gadget.yaml from project dir
-      install -m 644 gadget-${SNAPCRAFT_TARGET_ARCH}.yaml ${SNAPCRAFT_PROJECT_DIR}/gadget.yaml
+      install -m 644 gadget-${CRAFT_TARGET_ARCH}.yaml ${CRAFT_PROJECT_DIR}/gadget.yaml
